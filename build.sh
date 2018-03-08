@@ -1,6 +1,6 @@
 #!/bin/bash
 ./configure --prefix=/usr                        \
-            --docdir=/usr/share/doc/man-db-2.8.0 \
+            --docdir=/usr/share/doc/man-db-2.8.2 \
             --sysconfdir=/etc                    \
             --disable-setuid                     \
             --enable-cache-owner=bin             \
