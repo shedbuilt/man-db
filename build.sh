@@ -1,12 +1,19 @@
 #!/bin/bash
+declare -A SHED_PKG_LOCAL_OPTIONS=${SHED_PKG_OPTIONS_ASSOC}
+SHED_PKG_LOCAL_DOCDIR="/usr/share/doc/${SHED_PKG_NAME}-${SHED_PKG_VERSION}"
+# Configure
 ./configure --prefix=/usr                        \
-            --docdir=/usr/share/doc/man-db-2.8.2 \
+            --docdir=$SHED_PKG_LOCAL_DOCDIR      \
             --sysconfdir=/etc                    \
             --disable-setuid                     \
             --enable-cache-owner=bin             \
             --with-browser=/usr/bin/elinks       \
             --with-vgrind=/usr/bin/vgrind        \
-            --with-grap=/usr/bin/grap && \
-make -j $SHED_NUM_JOBS && \
+            --with-grap=/usr/bin/grap &&
+# Build and Install
+make -j $SHED_NUM_JOBS &&
 make DESTDIR="$SHED_FAKE_ROOT" install || exit 1
-sed -i "s:man man:root root:g" "${SHED_FAKE_ROOT}/usr/lib/tmpfiles.d/man-db.conf"
+# Optionally Remove Documentation
+if [ -z "${SHED_PKG_LOCAL_OPTIONS[docs]}" ]; then
+    rm -rf "${SHED_FAKE_ROOT}/usr/share/doc"
+fi
