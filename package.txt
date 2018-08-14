@@ -1,7 +1,7 @@
 NAME=man-db
-VERSION=2.8.3
-REVISION=1
-SRC=http://download.savannah.gnu.org/releases/man-db/man-db-2.8.3.tar.xz
-SRCMD5=6f3055e18fdd1ce5cbbdb30403991ec7
+VERSION=2.8.4
+REVISION=2
+SRC=http://download.savannah.gnu.org/releases/man-db/man-db-2.8.4.tar.xz
+SRCMD5=ab41db551f500e4a595b11203b86c67a
 OPTIONS=bootstrap|release (docs)
 DEFAULTS=release docs
